@@ -1,0 +1,15 @@
+export const TOPPINGS = {
+    mozzarella: 20,
+    tomato: 10,
+    pepperoni: 50,
+    cherry: 30,
+    ham: 80,
+    mushrooms: 40,
+    truffle_cream: 100,
+    bacon: 150,
+    chicken: 120,
+    beef: 150,
+    parmesan: 70,
+    cheddar: 70,
+    gorgonzolla: 70,
+  } as const;
