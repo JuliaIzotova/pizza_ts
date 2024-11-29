@@ -1,5 +1,3 @@
-import { PIZZA_SIZE } from "./types";
-
 export enum PIZZA_NAMES {
     MARGHERITA = 'Margherita',
     HAM_AND_MUSHROOMS = 'HumMushrooms',
@@ -12,38 +10,22 @@ export enum PIZZA_NAMES {
   export const pizzaReceipts = {
     [PIZZA_NAMES.MARGHERITA]: {
       toppings: ['mozzarella', 'tomato'],
-      prices: {
-       [PIZZA_SIZE.SMALL]:600,
-       [PIZZA_SIZE.MEDIUM]:700,
-       [PIZZA_SIZE.LARGE]:800
-      }
+      basePrice: 100
     },
 
     [PIZZA_NAMES.HAM_AND_MUSHROOMS]: {
       toppings: ['ham', 'musrooms', 'mozzarella'],
-      prices: {
-        [PIZZA_SIZE.SMALL]:700,
-        [PIZZA_SIZE.MEDIUM]:800,
-        [PIZZA_SIZE.LARGE]:900
-      }
+      basePrice: 200
     },
 
     [PIZZA_NAMES.PEPPERONI]: {
       toppings: ['mozzarella', 'tomato', 'pepperoni'],
-      prices: {
-        [PIZZA_SIZE.SMALL]:700,
-        [PIZZA_SIZE.MEDIUM]:800,
-        [PIZZA_SIZE.LARGE]:900
-      }
+      basePrice:300
     },
 
     [PIZZA_NAMES.TRUFFLE]: {
       toppings: ['gorgonzolla', 'mmushrooms', 'truffle_cream'],
-      prices: {
-        [PIZZA_SIZE.SMALL]:900,
-        [PIZZA_SIZE.MEDIUM]:1000,
-        [PIZZA_SIZE.LARGE]:1100
-      }
+      basePrice:400
     },
 
     [PIZZA_NAMES.BBQ]: {
@@ -55,19 +37,11 @@ export enum PIZZA_NAMES {
         'bacon',
         'chicken',
         'beef'],
-      prices: {
-        [PIZZA_SIZE.SMALL]:900,
-        [PIZZA_SIZE.MEDIUM]:1000,
-        [PIZZA_SIZE.LARGE]:1100
-      }
+        basePrice:500
     },
 
     [PIZZA_NAMES.CHEESE]: {
     toppings: ['mozzarella', 'parmesan ', 'cheddar', 'gorgonzolla'],
-      prices: {
-        [PIZZA_SIZE.SMALL]:790,
-        [PIZZA_SIZE.MEDIUM]:890,
-        [PIZZA_SIZE.LARGE]:990
-      }
+    basePrice:600
     }
   };

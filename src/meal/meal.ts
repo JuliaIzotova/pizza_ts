@@ -1,13 +1,15 @@
-import { PIZZA_NAMES } from '../data/receipts';
-import { IMeal } from '../data/types';
+import { TOPPINGS } from '../data/prices.js';
+import type { IMeal } from '../data/types.js';
 
 export abstract class Meal implements IMeal {
-    public finalPrice: number
-    constructor(readonly name: PIZZA_NAMES, public basePrice: number) {
-        this.finalPrice = this.calculatePrice()
+  totalPrice: number;
+  constructor(public name: string,public additionalToppings?: (keyof typeof TOPPINGS)[]) {
+    this.totalPrice = this.calculatePrice();
   }
-  getPrice(): number{
-    return this.finalPrice;
+
+abstract calculatePrice(): number;
+
+  getPrice(): number {
+    return this.totalPrice;
   }
-  abstract calculatePrice(): number
 }

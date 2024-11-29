@@ -1,28 +1,42 @@
+import { PIZZA_NAMES, pizzaReceipts } from '../data/receipts';
+import { PIZZA_SIZE, DOUGH_TYPE } from '../data/types';
 import { Meal } from './meal';
-import { pizzaReceipts, PIZZA_NAMES } from '../data/receipts';
-import { DOUGH_TYPE, PIZZA_SIZE } from '../data/types';
 import { TOPPINGS } from '../data/prices';
 
 
 export class Pizza extends Meal {
-  public finalPrice: number;
+  public basePrice: number;
+  private baseToppingsPrice: number;
+  private additionalToppingsPrice: number;
   constructor(
-    readonly name: PIZZA_NAMES,
+    name: PIZZA_NAMES,
     public doughType: DOUGH_TYPE,
     public size: PIZZA_SIZE,
-    public basePrice: number,
     public additionalToppings?: (keyof typeof TOPPINGS)[]
   ) {
-    super(name, basePrice);
-    this.finalPrice = this.calculatePrice();
+    super(name);
+
+    const recipe = pizzaReceipts[name];
+    this.basePrice = recipe.basePrice;
+    this.additionalToppings = additionalToppings ?? [];
+    this.baseToppingsPrice = this.calculateToppingsPrice(
+      recipe.toppings as (keyof typeof TOPPINGS)[] 
+    );
+    this.additionalToppingsPrice = this.calculateToppingsPrice(this.additionalToppings ?? []);
+    this.totalPrice = this.calculatePrice();
   }
-   calculatePrice(): number {
-    let price = pizzaReceipts[this.name].prices[this.size] + this.basePrice;
-    if (this.additionalToppings) {
-      price += this.additionalToppings.reduce((sum, topping) => {
-        return sum + (TOPPINGS[topping] || 0); 
-      }, 0);
-    }
-    return price;
+
+  getPrice(): number {
+    return this.totalPrice;
+  }
+
+ calculatePrice(): number {
+    return this.basePrice * this.doughType * this.size + this.baseToppingsPrice + this.additionalToppingsPrice;
+  }
+
+ calculateToppingsPrice(toppings: (keyof typeof TOPPINGS)[]): number {
+    return toppings.reduce((total, topping) => {
+      return total + TOPPINGS[topping];
+    }, 0);
   }
 }
