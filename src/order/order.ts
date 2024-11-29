@@ -6,17 +6,17 @@ import { ERROR_MESSAGES } from '../data/messages';
 
 export class Order {
   private pizzaStorage: IMeal[] = [];
+
   constructor(public orderID: number, public meals: IMeal[] = []) {
     this.pizzaStorage.push(...meals);
   }
   addPizza(
     name: PIZZA_NAMES,
-    basePrice: number,
     doughType: DOUGH_TYPE,
     size: PIZZA_SIZE,
     additionalToppings?: (keyof typeof TOPPINGS) []
   ) { 
-    const pizza = new Pizza(name, doughType, size, basePrice); 
+    const pizza = new Pizza(name, doughType, size, additionalToppings); 
     if (additionalToppings && additionalToppings.length > 0) {
         pizza.additionalToppings = [...additionalToppings];
     }
@@ -25,15 +25,8 @@ export class Order {
     return pizza; 
   }
   getMeals(): IMeal[] {
-    return this.pizzaStorage.map (pizza => {
-        const pizzaWithoutToppings = {...pizza};
-
-        if (!pizzaWithoutToppings.additionalToppings || pizzaWithoutToppings.additionalToppings.length === 0) {
-            delete pizzaWithoutToppings.additionalToppings;
-        }
-    return pizzaWithoutToppings
-    });
-}
+    return this.pizzaStorage;
+  }
   getFullPrice(): number {
     return this.pizzaStorage.reduce((total, meal) => total + meal.getPrice(), 0);
   }

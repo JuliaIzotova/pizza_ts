@@ -6,21 +6,18 @@ const pizzeria = new Pizzeria ('pizza eat', 'spb', '8-20');
 const order = pizzeria.createOrder();
 order.addPizza(
   PIZZA_NAMES.BBQ,
-  500,
-  DOUGH_TYPE.CLASSIC, 
+  DOUGH_TYPE.THIN, 
   PIZZA_SIZE.LARGE,
   ['bacon']
 );
 order.addPizza(
   PIZZA_NAMES.TRUFFLE,
-  800,
   DOUGH_TYPE.THIN,
   PIZZA_SIZE.LARGE,
   ['tomato', 'ham']
 );
 order.addPizza(
     PIZZA_NAMES.PEPPERONI,
-    600,
     DOUGH_TYPE.THIN,
     PIZZA_SIZE.MEDIUM
 )
